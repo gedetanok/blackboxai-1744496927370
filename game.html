@@ -39,44 +39,46 @@
     </nav>
 
     <!-- Game Container -->
-    <main class="container mx-auto px-4 py-8">
-        <div class="flex flex-col items-center">
-            <!-- Game Canvas Container -->
-            <div class="relative">
-                <canvas id="gameCanvas" width="800" height="600" class="border-4 border-yellow-500 rounded-lg"></canvas>
-                
-                <!-- Game Over Overlay -->
-                <div id="gameOverOverlay" class="game-overlay absolute inset-0 flex items-center justify-center rounded-lg">
-                    <div class="text-center">
-                        <h2 class="text-4xl font-orbitron text-red-500 mb-4">Game Over!</h2>
-                        <p class="text-xl mb-4">Final Score: <span id="finalScore">0</span></p>
-                        <button id="playAgainBtn" class="bg-yellow-500 text-black px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors">
-                            <i class="fas fa-redo mr-2"></i>Play Again
-                        </button>
-                    </div>
+    <main class="min-h-screen flex flex-col items-center justify-center px-4">
+        <!-- Game Canvas Container -->
+        <div class="relative mb-8">
+            <canvas id="gameCanvas" width="800" height="600" class="border-4 border-yellow-500 rounded-lg shadow-lg"></canvas>
+            
+            <!-- Game Over Overlay -->
+            <div id="gameOverOverlay" class="game-overlay absolute inset-0 flex items-center justify-center rounded-lg">
+                <div class="text-center bg-black/80 p-8 rounded-lg">
+                    <h2 class="text-4xl font-orbitron text-red-500 mb-4">Game Over!</h2>
+                    <p class="text-xl mb-4">Final Score: <span id="finalScore">0</span></p>
+                    <button id="playAgainBtn" class="bg-yellow-500 text-black px-8 py-3 rounded-full hover:bg-yellow-600 transition-colors text-lg font-bold">
+                        <i class="fas fa-redo mr-2"></i>Play Again
+                    </button>
                 </div>
             </div>
-            
-            <!-- Game Controls -->
-            <div class="mt-6 space-x-4">
-                <button id="startBtn" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">
-                    <i class="fas fa-play mr-2"></i>Start
+        </div>
+        
+        <!-- Game Controls -->
+        <div class="absolute top-[650px] left-0 right-0 flex flex-col items-center gap-6">
+            <!-- Primary Controls -->
+            <div class="flex justify-center space-x-4 w-full">
+                <button id="startBtn" class="bg-green-500 text-white px-12 py-4 rounded-full hover:bg-green-600 transition-all text-xl font-bold shadow-lg transform hover:scale-105 hover:shadow-xl">
+                    <i class="fas fa-play mr-2"></i>Start Game
                 </button>
-                <button id="pauseBtn" class="bg-yellow-500 text-black px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors hidden">
+                <button id="pauseBtn" class="bg-yellow-500 text-black px-12 py-4 rounded-full hover:bg-yellow-600 transition-all text-xl font-bold hidden shadow-lg transform hover:scale-105 hover:shadow-xl">
                     <i class="fas fa-pause mr-2"></i>Pause
                 </button>
-                <button id="restartBtn" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors hidden">
+                <button id="restartBtn" class="bg-blue-500 text-white px-12 py-4 rounded-full hover:bg-blue-600 transition-all text-xl font-bold hidden shadow-lg transform hover:scale-105 hover:shadow-xl">
                     <i class="fas fa-redo mr-2"></i>Restart
                 </button>
             </div>
 
             <!-- Score and Speed Display -->
-            <div class="mt-4 flex space-x-8 text-2xl font-orbitron">
+            <div class="flex space-x-8 text-2xl font-orbitron bg-black/50 px-8 py-4 rounded-lg">
                 <div>Score: <span id="scoreDisplay" class="text-yellow-500">0</span></div>
                 <div>Speed: <span id="speedDisplay" class="text-yellow-500">0</span> km/h</div>
             </div>
+        </div>
 
-            <!-- Controls Guide -->
+        <!-- Controls Guide -->
             <div class="mt-8 text-center">
                 <h3 class="text-xl font-orbitron mb-2">Controls</h3>
                 <div class="flex justify-center space-x-4 text-gray-300">
