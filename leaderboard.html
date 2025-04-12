@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Racer - Leaderboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .leaderboard-bg {
+            background-image: url('https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .trophy-gold { color: #FFD700; }
+        .trophy-silver { color: #C0C0C0; }
+        .trophy-bronze { color: #CD7F32; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white leaderboard-bg">
+    <!-- Navigation -->
+    <nav class="bg-black/80 w-full">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-yellow-500">
+                    <i class="fas fa-flag-checkered mr-2"></i>Speed Racer
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-500 transition-colors">Home</a>
+                    <a href="game.html" class="hover:text-yellow-500 transition-colors">Play</a>
+                    <a href="instructions.html" class="hover:text-yellow-500 transition-colors">Instructions</a>
+                    <a href="leaderboard.html" class="hover:text-yellow-500 transition-colors">Leaderboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Leaderboard Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="bg-black/80 rounded-lg p-8 max-w-4xl mx-auto">
+            <h1 class="text-4xl font-orbitron font-bold text-yellow-500 mb-8 text-center">
+                <i class="fas fa-trophy mr-3"></i>Leaderboard
+            </h1>
+
+            <!-- Top 3 Players -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                <!-- Silver Trophy (2nd Place) -->
+                <div class="order-2 md:order-1">
+                    <div class="bg-gray-800/50 rounded-lg p-6 text-center transform hover:-translate-y-1 transition-transform">
+                        <div class="text-6xl mb-4 trophy-silver">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="text-2xl font-orbitron mb-2" id="second-place-name">Player 2</div>
+                        <div class="text-xl text-gray-400" id="second-place-score">24,500</div>
+                    </div>
+                </div>
+
+                <!-- Gold Trophy (1st Place) -->
+                <div class="order-1 md:order-2">
+                    <div class="bg-gray-800/50 rounded-lg p-6 text-center transform hover:-translate-y-2 transition-transform">
+                        <div class="text-7xl mb-4 trophy-gold">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="text-3xl font-orbitron mb-2" id="first-place-name">Player 1</div>
+                        <div class="text-2xl text-gray-400" id="first-place-score">28,750</div>
+                    </div>
+                </div>
+
+                <!-- Bronze Trophy (3rd Place) -->
+                <div class="order-3">
+                    <div class="bg-gray-800/50 rounded-lg p-6 text-center transform hover:-translate-y-1 transition-transform">
+                        <div class="text-6xl mb-4 trophy-bronze">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="text-2xl font-orbitron mb-2" id="third-place-name">Player 3</div>
+                        <div class="text-xl text-gray-400" id="third-place-score">22,300</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Other Rankings -->
+            <div class="bg-gray-800/50 rounded-lg overflow-hidden">
+                <table class="w-full">
+                    <thead>
+                        <tr class="bg-black/50">
+                            <th class="py-4 px-6 text-left">Rank</th>
+                            <th class="py-4 px-6 text-left">Player</th>
+                            <th class="py-4 px-6 text-right">Score</th>
+                            <th class="py-4 px-6 text-right">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-body">
+                        <!-- Rows will be populated by JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- No Scores Message (hidden by default) -->
+            <div id="no-scores" class="hidden text-center py-8">
+                <p class="text-gray-400 text-xl">No scores recorded yet. Be the first to play!</p>
+                <a href="game.html" class="inline-block mt-4 bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition-colors">
+                    <i class="fas fa-play mr-2"></i>Play Now
+                </a>
+            </div>
+
+            <!-- Clear Scores Button (Admin only) -->
+            <div class="text-center mt-8">
+                <button id="clearScores" class="bg-red-500 text-white px-6 py-2 rounded-full hover:bg-red-600 transition-colors">
+                    <i class="fas fa-trash-alt mr-2"></i>Clear All Scores
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Initialize leaderboard from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            const leaderboardData = JSON.parse(localStorage.getItem('leaderboard')) || [];
+            updateLeaderboard(leaderboardData);
+
+            // Clear scores button functionality
+            document.getElementById('clearScores').addEventListener('click', function() {
+                if (confirm('Are you sure you want to clear all scores? This cannot be undone.')) {
+                    localStorage.removeItem('leaderboard');
+                    updateLeaderboard([]);
+                }
+            });
+        });
+
+        function updateLeaderboard(scores) {
+            // Sort scores in descending order
+            scores.sort((a, b) => b.score - a.score);
+
+            // Update top 3 players
+            if (scores.length > 0) {
+                document.getElementById('first-place-name').textContent = scores[0].name;
+                document.getElementById('first-place-score').textContent = scores[0].score.toLocaleString();
+            }
+            if (scores.length > 1) {
+                document.getElementById('second-place-name').textContent = scores[1].name;
+                document.getElementById('second-place-score').textContent = scores[1].score.toLocaleString();
+            }
+            if (scores.length > 2) {
+                document.getElementById('third-place-name').textContent = scores[2].name;
+                document.getElementById('third-place-score').textContent = scores[2].score.toLocaleString();
+            }
+
+            // Update table
+            const tbody = document.getElementById('leaderboard-body');
+            tbody.innerHTML = '';
+
+            if (scores.length === 0) {
+                document.querySelector('table').classList.add('hidden');
+                document.getElementById('no-scores').classList.remove('hidden');
+            } else {
+                document.querySelector('table').classList.remove('hidden');
+                document.getElementById('no-scores').classList.add('hidden');
+
+                scores.forEach((score, index) => {
+                    const row = document.createElement('tr');
+                    row.className = index % 2 === 0 ? 'bg-black/30' : '';
+                    row.innerHTML = `
+                        <td class="py-4 px-6">${index + 1}</td>
+                        <td class="py-4 px-6">${score.name}</td>
+                        <td class="py-4 px-6 text-right">${score.score.toLocaleString()}</td>
+                        <td class="py-4 px-6 text-right">${new Date(score.date).toLocaleDateString()}</td>
+                    `;
+                    tbody.appendChild(row);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
