@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Racer - Racing Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .game-bg {
+            background-image: url('https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/80 fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-yellow-500">
+                    <i class="fas fa-flag-checkered mr-2"></i>Speed Racer
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-500 transition-colors">Home</a>
+                    <a href="game.html" class="hover:text-yellow-500 transition-colors">Play</a>
+                    <a href="instructions.html" class="hover:text-yellow-500 transition-colors">Instructions</a>
+                    <a href="leaderboard.html" class="hover:text-yellow-500 transition-colors">Leaderboard</a>
+                </div>
+                <button class="md:hidden text-2xl">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="game-bg min-h-screen flex items-center justify-center">
+        <div class="bg-black/70 p-8 md:p-12 rounded-lg max-w-3xl mx-4 text-center">
+            <h1 class="text-4xl md:text-6xl font-orbitron font-bold mb-6 text-yellow-500">
+                Ready to Race?
+            </h1>
+            <p class="text-lg md:text-xl mb-8 text-gray-300">
+                Experience the thrill of high-speed racing in this action-packed game. 
+                Dodge obstacles, beat your opponents, and set new records!
+            </p>
+            <div class="space-y-4 md:space-y-0 md:space-x-4">
+                <a href="game.html" class="inline-block bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition-colors">
+                    <i class="fas fa-play mr-2"></i>Play Now
+                </a>
+                <a href="instructions.html" class="inline-block bg-transparent border-2 border-yellow-500 text-yellow-500 font-bold py-3 px-8 rounded-full hover:bg-yellow-500 hover:text-black transition-colors">
+                    <i class="fas fa-info-circle mr-2"></i>How to Play
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Features Section -->
+    <section class="bg-black/90 py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="text-center p-6">
+                    <i class="fas fa-tachometer-alt text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron font-bold mb-2">High Speed Action</h3>
+                    <p class="text-gray-400">Experience intense racing with smooth controls and realistic physics</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-trophy text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron font-bold mb-2">Global Leaderboard</h3>
+                    <p class="text-gray-400">Compete with players worldwide and climb the rankings</p>
+                </div>
+                <div class="text-center p-6">
+                    <i class="fas fa-level-up-alt text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-orbitron font-bold mb-2">Progressive Difficulty</h3>
+                    <p class="text-gray-400">Face increasing challenges as you advance through levels</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black text-center py-6">
+        <p class="text-gray-500">© 2024 Speed Racer. All rights reserved.</p>
+    </footer>
+</body>
+</html>
