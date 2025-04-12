@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Racer - Play Game</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        #gameCanvas {
+            background: #2c3e50;
+        }
+        .game-overlay {
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white">
+    <!-- Navigation -->
+    <nav class="bg-black/80 w-full">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-yellow-500">
+                    <i class="fas fa-flag-checkered mr-2"></i>Speed Racer
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-500 transition-colors">Home</a>
+                    <a href="game.html" class="hover:text-yellow-500 transition-colors">Play</a>
+                    <a href="instructions.html" class="hover:text-yellow-500 transition-colors">Instructions</a>
+                    <a href="leaderboard.html" class="hover:text-yellow-500 transition-colors">Leaderboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col items-center">
+            <!-- Game Canvas Container -->
+            <div class="relative">
+                <canvas id="gameCanvas" width="800" height="600" class="border-4 border-yellow-500 rounded-lg"></canvas>
+                
+                <!-- Game Over Overlay -->
+                <div id="gameOverOverlay" class="game-overlay absolute inset-0 flex items-center justify-center rounded-lg">
+                    <div class="text-center">
+                        <h2 class="text-4xl font-orbitron text-red-500 mb-4">Game Over!</h2>
+                        <p class="text-xl mb-4">Final Score: <span id="finalScore">0</span></p>
+                        <button id="playAgainBtn" class="bg-yellow-500 text-black px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors">
+                            <i class="fas fa-redo mr-2"></i>Play Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game Controls -->
+            <div class="mt-6 space-x-4">
+                <button id="startBtn" class="bg-green-500 text-white px-6 py-2 rounded-full hover:bg-green-600 transition-colors">
+                    <i class="fas fa-play mr-2"></i>Start
+                </button>
+                <button id="pauseBtn" class="bg-yellow-500 text-black px-6 py-2 rounded-full hover:bg-yellow-600 transition-colors hidden">
+                    <i class="fas fa-pause mr-2"></i>Pause
+                </button>
+                <button id="restartBtn" class="bg-blue-500 text-white px-6 py-2 rounded-full hover:bg-blue-600 transition-colors hidden">
+                    <i class="fas fa-redo mr-2"></i>Restart
+                </button>
+            </div>
+
+            <!-- Score and Speed Display -->
+            <div class="mt-4 flex space-x-8 text-2xl font-orbitron">
+                <div>Score: <span id="scoreDisplay" class="text-yellow-500">0</span></div>
+                <div>Speed: <span id="speedDisplay" class="text-yellow-500">0</span> km/h</div>
+            </div>
+
+            <!-- Controls Guide -->
+            <div class="mt-8 text-center">
+                <h3 class="text-xl font-orbitron mb-2">Controls</h3>
+                <div class="flex justify-center space-x-4 text-gray-300">
+                    <div><i class="fas fa-arrow-left"></i> Left</div>
+                    <div><i class="fas fa-arrow-right"></i> Right</div>
+                    <div><i class="fas fa-arrow-up"></i> Accelerate</div>
+                    <div><i class="fas fa-arrow-down"></i> Brake</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="game.js"></script>
+</body>
+</html>
