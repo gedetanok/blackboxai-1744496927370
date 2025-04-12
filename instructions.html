@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Speed Racer - Instructions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+        .instruction-bg {
+            background-image: url('https://images.pexels.com/photos/3422964/pexels-photo-3422964.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white instruction-bg">
+    <!-- Navigation -->
+    <nav class="bg-black/80 w-full">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-2xl font-orbitron font-bold text-yellow-500">
+                    <i class="fas fa-flag-checkered mr-2"></i>Speed Racer
+                </a>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-yellow-500 transition-colors">Home</a>
+                    <a href="game.html" class="hover:text-yellow-500 transition-colors">Play</a>
+                    <a href="instructions.html" class="hover:text-yellow-500 transition-colors">Instructions</a>
+                    <a href="leaderboard.html" class="hover:text-yellow-500 transition-colors">Leaderboard</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Instructions Content -->
+    <main class="container mx-auto px-4 py-12">
+        <div class="bg-black/80 rounded-lg p-8 max-w-4xl mx-auto">
+            <h1 class="text-4xl font-orbitron font-bold text-yellow-500 mb-8 text-center">How to Play</h1>
+
+            <!-- Game Objective -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-orbitron text-yellow-500 mb-4">
+                    <i class="fas fa-bullseye mr-2"></i>Game Objective
+                </h2>
+                <p class="text-gray-300 mb-4">
+                    Race through traffic, avoid collisions, and survive as long as possible while collecting points. The longer you survive and the more cars you pass, the higher your score will be!
+                </p>
+            </section>
+
+            <!-- Controls -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-orbitron text-yellow-500 mb-4">
+                    <i class="fas fa-keyboard mr-2"></i>Controls
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                        <h3 class="font-orbitron mb-2">Movement</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-arrow-left text-yellow-500 mr-2"></i>Left Arrow: Move Left</li>
+                            <li><i class="fas fa-arrow-right text-yellow-500 mr-2"></i>Right Arrow: Move Right</li>
+                            <li><i class="fas fa-arrow-up text-yellow-500 mr-2"></i>Up Arrow: Accelerate</li>
+                            <li><i class="fas fa-arrow-down text-yellow-500 mr-2"></i>Down Arrow: Brake</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                        <h3 class="font-orbitron mb-2">Game Controls</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li><i class="fas fa-play text-yellow-500 mr-2"></i>Space Bar: Start/Pause Game</li>
+                            <li><i class="fas fa-redo text-yellow-500 mr-2"></i>R Key: Restart Game</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Scoring System -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-orbitron text-yellow-500 mb-4">
+                    <i class="fas fa-star mr-2"></i>Scoring System
+                </h2>
+                <div class="bg-gray-800/50 p-4 rounded-lg">
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-green-500 mr-2"></i>Pass a car: +100 points</li>
+                        <li><i class="fas fa-tachometer-alt text-blue-500 mr-2"></i>Speed bonus: Up to 2x multiplier</li>
+                        <li><i class="fas fa-clock text-yellow-500 mr-2"></i>Time bonus: +10 points per second</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Tips & Tricks -->
+            <section class="mb-10">
+                <h2 class="text-2xl font-orbitron text-yellow-500 mb-4">
+                    <i class="fas fa-lightbulb mr-2"></i>Tips & Tricks
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                        <h3 class="font-orbitron mb-2">Beginner Tips</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>Start slow and focus on avoiding collisions</li>
+                            <li>Stay in the middle lanes when possible</li>
+                            <li>Watch for patterns in traffic movement</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-800/50 p-4 rounded-lg">
+                        <h3 class="font-orbitron mb-2">Advanced Strategies</h3>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>Use brake to create gaps in traffic</li>
+                            <li>Maintain high speed for score multipliers</li>
+                            <li>Plan your moves several cars ahead</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <div class="text-center mt-8">
+                <a href="game.html" class="inline-block bg-yellow-500 text-black font-bold py-3 px-8 rounded-full hover:bg-yellow-400 transition-colors">
+                    <i class="fas fa-play mr-2"></i>Start Racing Now
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
