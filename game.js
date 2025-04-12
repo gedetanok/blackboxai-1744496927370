@@ -56,8 +56,24 @@ function init() {
     document.getElementById('restartBtn').addEventListener('click', restartGame);
     document.getElementById('playAgainBtn').addEventListener('click', restartGame);
 
+    // Hide pause and restart buttons initially
+    document.getElementById('pauseBtn').classList.add('hidden');
+    document.getElementById('restartBtn').classList.add('hidden');
+    document.getElementById('gameOverOverlay').style.display = 'none';
+
+    // Reset game state
+    isGameRunning = false;
+    isPaused = false;
+    score = 0;
+    speed = INITIAL_SPEED;
+    enemyCars = [];
+
     // Draw initial screen
     drawStartScreen();
+    
+    // Update score display
+    document.getElementById('scoreDisplay').textContent = '0';
+    document.getElementById('speedDisplay').textContent = '0';
 }
 
 // Handle keyboard input
@@ -106,14 +122,31 @@ function handleKeyUp(event) {
 // Game state management
 function startGame() {
     if (!isGameRunning) {
+        // Reset game state
         isGameRunning = true;
         isPaused = false;
         score = 0;
         speed = INITIAL_SPEED;
         enemyCars = [];
+        
+        // Reset player car position
+        playerCar.x = GAME_WIDTH / 2 - CAR_WIDTH / 2;
+        playerCar.y = GAME_HEIGHT - CAR_HEIGHT - 20;
+        
+        // Update UI
         updateUI('start');
+        hideGameOver();
+        document.getElementById('startBtn').classList.add('hidden');
+        document.getElementById('pauseBtn').classList.remove('hidden');
+        document.getElementById('restartBtn').classList.remove('hidden');
+        
+        // Start game loops
         gameLoop = setInterval(update, 1000 / 60);
         spawnEnemies();
+        
+        // Reset displays
+        document.getElementById('scoreDisplay').textContent = '0';
+        document.getElementById('speedDisplay').textContent = Math.round(speed * 10);
     }
 }
 
@@ -264,13 +297,19 @@ function drawStartScreen() {
     ctx.fillStyle = '#2c3e50';
     ctx.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
     
+    // Draw road lanes
+    drawRoad();
+    
+    // Draw player car in initial position
+    drawCar(playerCar);
+    
     ctx.fillStyle = '#ffffff';
     ctx.font = '48px Orbitron';
     ctx.textAlign = 'center';
     ctx.fillText('Speed Racer', GAME_WIDTH/2, GAME_HEIGHT/2 - 50);
     
     ctx.font = '24px Orbitron';
-    ctx.fillText('Press SPACE or click Start to begin', GAME_WIDTH/2, GAME_HEIGHT/2 + 50);
+    ctx.fillText('Press SPACE or click Start Game to begin', GAME_WIDTH/2, GAME_HEIGHT/2 + 50);
 }
 
 // UI updates
